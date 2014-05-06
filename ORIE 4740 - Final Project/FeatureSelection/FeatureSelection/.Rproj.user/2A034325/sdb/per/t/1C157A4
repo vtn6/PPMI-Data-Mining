@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1399055918711.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "1C157A4",
+    "lastKnownWriteTime" : 21392300099829876,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "totalDat",
+        "contentUrl" : "content?title=totalDat&file=475aebe57e7a4c64b2e6659fcd7d572b.htm",
+        "displayedObservations" : 1000,
+        "displayedVariables" : 100,
+        "totalObservations" : 11541,
+        "variables" : 365
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,17 @@
+{
+    "contents" : "trimData <- function(dat) {\n  patients = unique(dat$PATNO)\n  trimmedDat <<- dat\n  for (i in 1:length(patients)) {\n    patientDat = dat[dat$PATNO == patients[i],]\n    print(patients[i])\n    if (sum(is.na(patientDat$CAUDATE_R)) == dim(patientDat)[1]) {\n      trimmedDat <<- trimmedDat[trimmedDat$PATNO != patients[i],]\n    }\n  }\n  \n  finalDat <<- trimmedDat\n\n}\n\ntestTrim <- function(trimmedDat){\n  finalDat <<- trimmedDat\n  trimmedPats = levels(as.factor(trimmedDat$PATNO))\n  print(trimmedPats)\n  for (i in 4:dim(finalDat)[2]) {\n    print(i)\n    for (j in 1:length(trimmedPats)) {\n      temp = trimmedDat[trimmedDat$PATNO == trimmedPats[j],]\n      temp = temp[,i]\n      print(trimmedPats[j])\n      if (sum(is.na(temp) == length(temp))) {\n        print('column removed')\n        finalDat[,i] <<- NULL\n        next\n      }\n    }\n  }\n}",
+    "created" : 1399051766010.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4157159030",
+    "id" : "2F8C1B13",
+    "lastKnownWriteTime" : 1399058446,
+    "path" : "C:/Users/Jason/Desktop/FeatureSelection/SubsetSelect.R",
+    "project_path" : "SubsetSelect.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
