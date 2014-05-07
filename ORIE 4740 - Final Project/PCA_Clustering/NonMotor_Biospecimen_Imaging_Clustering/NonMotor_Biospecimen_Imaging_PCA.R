@@ -1,11 +1,14 @@
 #Apply PCA to non-motor, biospecimen, and imaging data
-
+#other than the UPSITTOTAL, there doesn't seem to be much significance between bio data and non motor data
 rm(list = ls())
 library(ggplot2)
 library(gplots)
 library(rgl)
 library(lattice)
 library(sjPlot)
+library(fpc)
+library(mclust)
+library(cluster)
 
 setwd("~/Dropbox//ORIE 4740 - Final Project/PCA_Clustering/NonMotor_Biospecimen_Imaging_Clustering//")
 ppmi.raw.data.csv = read.csv("NMIB_AverageValues.csv") #use average values
@@ -43,13 +46,8 @@ ppmi.nonmotor.data = subset.data.frame(ppmi.raw.data,select = c(JLO_TOTRAW,
                                                                 DVT_SFTANIM,
                                                                 DVT_SDM,
                                                                 SCOPATOTAL,
-                                                                UPSITBK1,
-                                                                UPSITBK2,
-                                                                UPSITBK3,
-                                                                UPSITBK4,
                                                                 UPSITTOTAL                                                                
-                                                                )
-                                       )
+                                                                ))
 
 #assuming that all UPDRSPart3 data is in the columns between NP3SPCH and NUPDRS_TOT
 ppmi.motor.NUPDRS3.data = ppmi.raw.data[,
@@ -81,4 +79,23 @@ sjp.pca(ppmi.nonmotor.biospecimen.imaging.pca,
         plotEigenvalues = TRUE,
         type = "circle")
 
+# PCA shows that only the first 9 PCs satisfy kaiser criterion -----------
+mydata = ppmi.nonmotor.biospecimen.imaging.pca$x[,c(1:9)]
 
+# model based clustering on the first 9 components -----------------------
+
+model_fit = Mclust(mydata)
+plot(model_fit)
+summary(model_fit)
+
+# k-means clustering with the first 9 components -------------------------
+wss <- (nrow(mydata)-1)*sum(apply(mydata,2,var))
+for (i in 2:15) wss[i] <- sum(kmeans(mydata, 
+                                     centers=i)$withinss)
+plot(1:15, wss, type="b", xlab="Number of Clusters",
+     ylab="Within groups sum of squares")
+
+plot3d(ppmi.motor.NUPDRS3.pca$x[,c(1:3)],
+       xlim = c(-10,10),
+       ylim = c(-10,10),
+       zlim = c(-10,10))

@@ -1,0 +1,7 @@
+source("/Users/Vincent/Dropbox/ORIE 4740 - Final Project/PCA_Clustering/Motor_Biospecimen_Imaging_Clustering/lols.R")
+foo = prcomp(ppmi.biospecimen.imaging.data)
+foo$rotation[,c(1:3)]
+foo = prcomp(ppmi.biospecimen.imaging.data,scale = TRUE)
+foo$rotation[,c(1:3)]
+foo = prcomp(ppmi.NUPDRS3.Biospecimen.Imaging.data,scale = TRUE)
+foo$rotation[,c(1:3)]
