@@ -1,6 +1,7 @@
 PPMI-Data-Mining
-Authors: Vincent Nguyen, Vania Sung, Jason Wang
 ================
+Authors: Vincent Nguyen, Vania Sung, Jason Wang
+
 Data Mining Project on the PPMI Dataset (Parkinson's Progression Initiative)
 
 Used cluster analysis, PCA, and neuralnets, to achieve the following outcomes
